@@ -1,6 +1,6 @@
 <div align="center">
 
-# URL Shield API
+<img src="docs/brand/wordmark.webp" alt="URL Shield API" width="100%">
 
 **The backend for a phishing-link checker: send it a URL, get back a risk score, a verdict and the reasons.**
 
@@ -31,7 +31,7 @@ Verdict: under 20 is `safe`, under 50 `low_risk`, under 75 `medium_risk`, and 75
 
 ## Endpoints
 
-All routes are under `/v1`, rate-limited to 100 requests per 15 minutes per IP, and need an `x-api-key` header.
+All routes are under `/v1`, rate-limited to 100 requests per 15 minutes per IP, and need an `x-api-key` header that matches `API_KEY`. Keys are compared in constant time.
 
 | Method | Path | What it does |
 |---|---|---|
@@ -59,7 +59,7 @@ npm run dev              # nodemon, or: npm start
 | Variable | Purpose |
 |---|---|
 | `MONGODB_URI` | MongoDB connection (default `mongodb://localhost:27017/urlshield`) |
-| `API_KEY` | key clients must send in `x-api-key` |
+| `API_KEY` | **required**: the key clients send in `x-api-key`. With no key set, authenticated routes return 503 |
 | `NODE_ENV` | `development` allows requests without a key |
 
 Deploys to Railway with `railway.toml` (Nixpacks build, `/health` health check).
